@@ -1,23 +1,3 @@
-# Laravel Adminator Dashboard
-
-Simple Laravel adminpanel based on [Adminator Bootstrap theme](https://github.com/puikinsh/Adminator-admin-dashboard)
-
-Generated with [QuickAdminPanel generator](https://2019.quickadminpanel.com) and manually applied front-end theme.
-
-What's inside:
-
-- Login/Register functionality with default Laravel 
-- Managing Users/Roles/Permissions CRUDs: tables, and forms
-
-![Laravel Adminator Dashboard screenshot](https://laraveldaily.com/wp-content/uploads/2019/10/laravel-adminator-users-form.png)
-
-![Laravel Adminator Dashboard screenshot 02](https://laraveldaily.com/wp-content/uploads/2019/10/laravel-adminator-users-list.png)
-
-![Laravel Adminator Dashboard screenshot 03](https://laraveldaily.com/wp-content/uploads/2019/10/laravel-adminator-login.png)
-
-
----
-
 ## How to use
 
 - Clone the repository with __git clone__
