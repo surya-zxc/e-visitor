@@ -81,6 +81,31 @@
                     </ul>
                 </li>
             @endcan
+            @can('data_utama_access')
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#">
+                        <span class="icon-holder">
+                            <i class="fa-fw fas fa-users nav-icon"></i>
+                        </span>
+                        <span class="title">{{ trans('cruds.dataUtama.title') }}</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @can('alat_access')
+                            <li>
+                                <a href="{{ route("admin.alat.index") }}" class="sidebar-link {{ request()->is('admin/alat') || request()->is('admin/alat/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-unlock-alt nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.alat.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <span class="icon-holder">

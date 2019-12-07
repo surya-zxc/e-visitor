@@ -18,4 +18,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
+    // Alat
+    Route::delete('alat/destroy', 'AlatController@massDestroy')->name('alat.massDestroy');
+    Route::resource('alat', 'AlatController');
 });

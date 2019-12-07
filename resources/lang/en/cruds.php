@@ -65,4 +65,28 @@ return [
             'deleted_at_helper'        => '',
         ],
     ],
+    'dataUtama' => [
+        'title'          => 'Data Utama',
+        'title_singular' => 'Data Utama',
+    ],
+    'alat'           => [
+        'title'          => 'Alat',
+        'title_singular' => 'Alat',
+        'fields'         => [
+            'id'                       => 'ID',
+            'id_helper'                => '',
+            'mac_address'              => 'MAC Address',
+            'mac_address_helper'       => '',
+            'ip_address'               => 'IP Address',
+            'ip_address_helper'        => '',
+            'area_id'                  => 'ID Area',
+            'area_id_helper'           => '',
+            'created_at'               => 'Created at',
+            'created_at_helper'        => '',
+            'updated_at'               => 'Updated at',
+            'updated_at_helper'        => '',
+            'deleted_at'               => 'Deleted at',
+            'deleted_at_helper'        => '',
+        ],
+    ],
 ];

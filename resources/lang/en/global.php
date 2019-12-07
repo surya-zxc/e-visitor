@@ -84,6 +84,7 @@ return [
     'assigned_user'                        => 'Assigned (user)',
     'attachment'                           => 'Attachment',
     'axis'                                 => 'Axis',
+    'back'                                 => 'Back',
     'back_to_list'                         => 'Back to list',
     'basic_crm'                            => 'Basic CRM',
     'budget'                               => 'Budget',
