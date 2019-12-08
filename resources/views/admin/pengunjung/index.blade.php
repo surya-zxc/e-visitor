@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 @section('content')
 <h6 class="c-grey-900">
-    {{ trans('cruds.alat.title_singular') }}
+    {{ trans('cruds.pengunjung.title_singular') }}
 </h6>
 <div class="mT-30">
     @can('alat_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route("admin.alat.create") }}">
-                    {{ trans('global.add') }} {{ trans('cruds.alat.title_singular') }}
+                <a class="btn btn-success" href="{{ route("admin.pengunjung.create") }}">
+                    {{ trans('global.add') }} {{ trans('cruds.pengunjung.title_singular') }}
                 </a>
             </div>
         </div>
@@ -21,16 +21,28 @@
 
                 </th>
                 <th>
-                    {{ trans('cruds.alat.fields.id') }}
+                    {{ trans('cruds.pengunjung.fields.id') }}
                 </th>
                 <th>
-                    {{ trans('cruds.alat.fields.mac_address') }}
+                    {{ trans('cruds.pengunjung.fields.no_identitas') }}
                 </th>
                 <th>
-                    {{ trans('cruds.alat.fields.ip_address') }}
+                    {{ trans('cruds.pengunjung.fields.jenis_identitas') }}
                 </th>
                 <th>
-                    {{ trans('cruds.alat.fields.area_id') }}
+                    {{ trans('cruds.pengunjung.fields.jenis_identitas_lain') }}
+                </th>
+                <th>
+                    {{ trans('cruds.pengunjung.fields.nama') }}
+                </th>
+                <th>
+                    {{ trans('cruds.pengunjung.fields.jenis_kelamin') }}
+                </th>
+                <th>
+                    {{ trans('cruds.pengunjung.fields.no_telp') }}
+                </th>
+                <th>
+                    {{ trans('cruds.pengunjung.fields.pekerjaan') }}
                 </th>
                 <th>
                     {{ trans('global.actions') }}
@@ -58,14 +70,28 @@
                         @endforeach
                     </td>
                     <td>
+                        {{ $user->id ?? '' }}
+                    </td>
+                    <td>
+                        {{ $user->name ?? '' }}
+                    </td>
+                    <td>
+                        {{ $user->email ?? '' }}
+                    </td>
+                    <td>
+                        @foreach($user->roles as $key => $item)
+                            <span class="badge badge-info">{{ $item->title }}</span>
+                        @endforeach
+                    </td>
+                    <td>
                         @can('alat_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.alat.edit', $user->id) }}">
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.pengunjung.edit', $user->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                         @endcan
 
                         @can('alat_delete')
-                            <form action="{{ route('admin.alat.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            <form action="{{ route('admin.pengunjung.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">

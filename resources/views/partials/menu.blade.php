@@ -7,7 +7,7 @@
                         <div class="peers ai-c fxw-nw">
                             <div class="peer">
                                 <div class="logo">
-                                    <img src="/assets/static/images/logo.png" alt="">
+                                    <img src="/assets/static/images/logo.png" alt="" style="width:50px;height:50px;margin-top:10%;margin-left:13%;margin-right:5%">
                                 </div>
                             </div>
                             <div class="peer peer-greed">
@@ -36,7 +36,7 @@
                     <span class="title">{{ trans('global.dashboard') }}</span>
                 </a>
             </li>
-            @can('user_management_access')
+            <!-- @can('user_management_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">
                         <span class="icon-holder">
@@ -80,12 +80,47 @@
                         @endcan
                     </ul>
                 </li>
-            @endcan
+            @endcan -->
             @can('data_utama_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">
                         <span class="icon-holder">
                             <i class="fa-fw fas fa-users nav-icon"></i>
+                        </span>
+                        <span class="title">{{ trans('cruds.manajemenPengguna.title') }}</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @can('alat_access')
+                            <li>
+                                <a href="{{ route("admin.kunjungan.index") }}" class="sidebar-link {{ request()->is('admin/kunjungan') || request()->is('admin/kunjungan/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-plus-circle nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.kunjungan.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                        @can('alat_access')
+                            <li>
+                                <a href="{{ route("admin.areaAkses.index") }}" class="sidebar-link {{ request()->is('admin/areaAkses') || request()->is('admin/areaAkses/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-check-circle nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.akses_area.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('data_utama_access')
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#">
+                        <span class="icon-holder">
+                            <i class="fa-fw fas fa-database nav-icon"></i>
                         </span>
                         <span class="title">{{ trans('cruds.dataUtama.title') }}</span>
                         <span class="arrow">
@@ -95,11 +130,41 @@
                     <ul class="dropdown-menu">
                         @can('alat_access')
                             <li>
+                                <a href="{{ route("admin.area.index") }}" class="sidebar-link {{ request()->is('admin/area') || request()->is('admin/area/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-building nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.area.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                        @can('alat_access')
+                            <li>
                                 <a href="{{ route("admin.alat.index") }}" class="sidebar-link {{ request()->is('admin/alat') || request()->is('admin/alat/*') ? 'active' : '' }}">
-                                    <i class="fa-fw fas fa-unlock-alt nav-icon">
+                                    <i class="fa-fw fas fa-microchip nav-icon">
 
                                     </i>
                                     {{ trans('cruds.alat.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                        @can('alat_access')
+                            <li>
+                                <a href="{{ route("admin.pengunjung.index") }}" class="sidebar-link {{ request()->is('admin/pengunjung') || request()->is('admin/pengunjung/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-user nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.pengunjung.title') }}
+                                </a>
+                            </li>
+                        @endcan
+                        @can('alat_access')
+                            <li>
+                                <a href="{{ route("admin.kartu.index") }}" class="sidebar-link {{ request()->is('admin/kartu') || request()->is('admin/kartu/*') ? 'active' : '' }}">
+                                    <i class="fa-fw fas fa-vcard nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.kartu.title') }}
                                 </a>
                             </li>
                         @endcan

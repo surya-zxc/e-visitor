@@ -12,7 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AreaController extends Controller
+class KartuController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class AreaController extends Controller
 
         $users = User::all();
 
-        return view('admin.area.index', compact('users'));
+        return view('admin.kartu.index', compact('users'));
     }
 
     public function create()
@@ -29,7 +29,7 @@ class AreaController extends Controller
 
         $roles = Role::all()->pluck('title', 'id');
 
-        return view('admin.area.create', compact('roles'));
+        return view('admin.kartu.create', compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -37,7 +37,7 @@ class AreaController extends Controller
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('admin.area.index');
+        return redirect()->route('admin.kartu.index');
     }
 
     public function edit(User $user)
@@ -48,7 +48,7 @@ class AreaController extends Controller
 
         $user->load('roles');
 
-        return view('admin.area.edit', compact('roles', 'user'));
+        return view('admin.kartu.edit', compact('roles', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -56,7 +56,7 @@ class AreaController extends Controller
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('admin.area.index');
+        return redirect()->route('admin.kartu.index');
     }
 
     public function destroy(User $user)

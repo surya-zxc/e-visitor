@@ -43,7 +43,7 @@
                        </a>
                    </li>
                 </ul>
-                <ul class="nav-right">
+                <!-- <ul class="nav-right">
                     @if(count(config('panel.available_languages', [])) > 1)
                         <li class="">
                             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@
                             </div>
                         </li>
                     @endif
-                </ul>
+                </ul> -->
             </div>
         </div>
         <main class="main-content bgc-grey-100">

@@ -32,7 +32,7 @@
         </div>
         <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
             <label for="area">{{ trans('cruds.alat.fields.area_id') }}*</label>
-            <select name="area[]" id="area" class="form-control select2" required>
+            <select name="area[]" id="area" class="form-control select1" required>
                 @foreach($roles as $id => $roles)
                     <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
                 @endforeach
