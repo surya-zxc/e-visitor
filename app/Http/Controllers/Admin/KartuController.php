@@ -7,7 +7,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Role;
-use App\User;
+use App\Card;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,60 +17,51 @@ class KartuController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::all();
-
+        $users = Card::all();
         return view('admin.kartu.index', compact('users'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        return view('admin.kartu.create', compact('roles'));
+        return view('admin.kartu.create');
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
+        $data = array('card_uid' => $request->uid);
+        Card::create($data);
         return redirect()->route('admin.kartu.index');
     }
 
-    public function edit(User $user)
+    public function edit($user)
     {
+        $user = Card::findOrFail((int) $user);
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        $user->load('roles');
-
-        return view('admin.kartu.edit', compact('roles', 'user'));
+        return view('admin.kartu.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, $user)
     {
-        $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
+        $user = Card::findOrFail((int) $user);
+        $data = array(
+          'card_uid' => $request->uid,
+        );
+        $user->update($data);
         return redirect()->route('admin.kartu.index');
     }
 
-    public function destroy(User $user)
+    public function destroy($user)
     {
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $user = Card::findOrFail((int) $user);
         $user->delete();
-
         return back();
     }
 
-    public function massDestroy(MassDestroyUserRequest $request)
+    public function massDestroy(MassDestroyCardRequest $request)
     {
-        User::whereIn('id', request('ids'))->delete();
+        Card::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyUserRequest;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use App\Role;
-use App\User;
+use App\Area;
+use App\Device;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,55 +13,40 @@ class AlatController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('alat_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::all();
-
+        $users = Device::with('area')->get();
         return view('admin.alat.index', compact('users'));
     }
 
     public function create()
     {
-        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        return view('admin.alat.create', compact('roles'));
+        $areas = Area::select('id','nama')->orderBy('nama')->get();
+        return view('admin.alat.create',compact('areas'));
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
+        $user = Device::create($request->all());
         return redirect()->route('admin.alat.index');
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
-        abort_if(Gate::denies('alat_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        $user->load('roles');
-
-        return view('admin.alat.edit', compact('roles', 'user'));
+        $user = Device::findOrFail($id);
+        $areas = Area::select('id','nama')->orderBy('nama')->get();
+        return view('admin.alat.edit', compact('areas', 'user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = Device::findOrFail($id);
         $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
         return redirect()->route('admin.alat.index');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $user = Device::findOrFail($id);
         $user->delete();
-
         return back();
     }
 

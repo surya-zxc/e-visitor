@@ -36,13 +36,81 @@
                     <span class="title">{{ trans('global.dashboard') }}</span>
                 </a>
             </li>
-            <!-- @can('user_management_access')
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle" href="#">
+                <span class="icon-holder">
+                    <i class="fa-fw fas fa-sign-in-alt nav-icon"></i>
+                </span>
+                <span class="title">Kunjungan</span>
+                <span class="arrow">
+                    <i class="ti-angle-right"></i>
+                </span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li>
+                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                      <i class="fa-fw fas fa-plus nav-icon"> </i>
+                      Tambah Kunjungan
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                      <i class="fa-fw fas fa-route nav-icon"> </i>
+                      Track Pengunjung
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                      <i class="fa-fw fas fa-history nav-icon"> </i>
+                      Riwayat Kunjungan
+                    </a>
+                  </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle" href="#">
+                  <span class="icon-holder">
+                      <i class="fa-fw fas fa-database nav-icon"></i>
+                  </span>
+                <span class="title">Master data</span>
+                <span class="arrow">
+                      <i class="ti-angle-right"></i>
+                  </span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{{ route("admin.kartu.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-id-card nav-icon"> </i>
+                    Kartu Pengunjung
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ route("admin.area.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-map-marked nav-icon"> </i>
+                    Area
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ route("admin.alat.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-hdd nav-icon"> </i>
+                    Perangkat
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ route("admin.pengunjung.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-users nav-icon"> </i>
+                    Pengunjung
+                  </a>
+                </li>
+              </ul>
+            </li>
+            @can('user_management_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">
                         <span class="icon-holder">
-                            <i class="fa-fw fas fa-users nav-icon"></i>
+                            <i class="fa-fw fas fa-cogs nav-icon"></i>
                         </span>
-                        <span class="title">{{ trans('cruds.userManagement.title') }}</span>
+                        <span class="title">Sistem</span>
                         <span class="arrow">
                             <i class="ti-angle-right"></i>
                         </span>
@@ -80,7 +148,7 @@
                         @endcan
                     </ul>
                 </li>
-            @endcan -->
+            @endcan
             @can('data_utama_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">

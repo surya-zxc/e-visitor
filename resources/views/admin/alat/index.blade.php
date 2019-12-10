@@ -30,7 +30,7 @@
                     {{ trans('cruds.alat.fields.ip_address') }}
                 </th>
                 <th>
-                    {{ trans('cruds.alat.fields.area_id') }}
+                    Area
                 </th>
                 <th>
                     {{ trans('global.actions') }}
@@ -47,15 +47,13 @@
                         {{ $user->id ?? '' }}
                     </td>
                     <td>
-                        {{ $user->name ?? '' }}
+                        {{ $user->mac_address ?? '' }}
                     </td>
                     <td>
-                        {{ $user->email ?? '' }}
+                        {{ $user->ip_address ?? '' }}
                     </td>
                     <td>
-                        @foreach($user->roles as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                        @endforeach
+                        {{ $user->area->nama }}
                     </td>
                     <td>
                         @can('alat_edit')

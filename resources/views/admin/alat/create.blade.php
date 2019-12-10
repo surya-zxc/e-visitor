@@ -7,8 +7,8 @@
     <form action="{{ route("admin.alat.store") }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group {{ $errors->has('mac') ? 'has-error' : '' }}">
-            <label for="mac">{{ trans('cruds.alat.fields.mac_address') }}*</label>
-            <input type="text" id="mac" name="mac" class="form-control" value="{{ old('mac', isset($user) ? $user->name : '') }}" required>
+            <label for="mac">{{ trans('cruds.alat.fields.mac_address') }}</label>
+            <input type="text" id="mac" name="mac_address" class="form-control" value="{{ old('mac_address', isset($user) ? $user->mac_address : '') }}">
             @if($errors->has('mac'))
                 <em class="invalid-feedback">
                     {{ $errors->first('mac') }}
@@ -19,8 +19,8 @@
             </p>
         </div>
         <div class="form-group {{ $errors->has('ip') ? 'has-error' : '' }}">
-            <label for="ip">{{ trans('cruds.alat.fields.ip_address') }}*</label>
-            <input type="text" id="ip" name="ip" class="form-control" value="{{ old('ip', isset($user) ? $user->email : '') }}" required>
+            <label for="ip">{{ trans('cruds.alat.fields.ip_address') }}</label>
+            <input type="text" id="ip" name="ip_address" class="form-control" value="{{ old('ip_address', isset($user) ? $user->ip_address : '') }}">
             @if($errors->has('ip'))
                 <em class="invalid-feedback">
                     {{ $errors->first('ip') }}
@@ -32,9 +32,9 @@
         </div>
         <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
             <label for="area">{{ trans('cruds.alat.fields.area_id') }}*</label>
-            <select name="area[]" id="area" class="form-control select1" required>
-                @foreach($roles as $id => $roles)
-                    <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
+            <select name="area_id" id="area" class="form-control select1" required>
+                @foreach($areas as $id => $area)
+                    <option value="{{ $area->id }}" {{ (in_array($area->id, old('area_id', [])) || isset($user) && $user->areas->contains($area->$id)) ? 'selected' : '' }}>{{ $area->nama }}</option>
                 @endforeach
             </select>
             @if($errors->has('area'))

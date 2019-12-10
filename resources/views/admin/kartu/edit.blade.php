@@ -4,11 +4,12 @@
     {{ trans('global.edit') }} {{ trans('cruds.kartu.title_singular') }}
 </h6>
 <div class="mT-30">
+  <form action="{{ route("admin.kartu.update", [$user->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group {{ $errors->has('uid') ? 'has-error' : '' }}">
             <label for="uid">{{ trans('cruds.kartu.fields.card_uid') }}*</label>
-            <input type="text" id="uid" name="uid" class="form-control" value="{{ old('uid', isset($user) ? $user->name : '') }}" required>
+            <input type="text" id="uid" name="uid" class="form-control" value="{{ old('uid', isset($user) ? $user->card_uid : '') }}" required>
             @if($errors->has('uid'))
                 <em class="invalid-feedback">
                     {{ $errors->first('uid') }}
@@ -25,5 +26,6 @@
             </a>
             <input class="btn btn-success" type="submit" value="{{ trans('global.save') }}">
         </div>
+  </form>
 </div>
 @endsection

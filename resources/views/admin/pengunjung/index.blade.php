@@ -30,9 +30,6 @@
                     {{ trans('cruds.pengunjung.fields.jenis_identitas') }}
                 </th>
                 <th>
-                    {{ trans('cruds.pengunjung.fields.jenis_identitas_lain') }}
-                </th>
-                <th>
                     {{ trans('cruds.pengunjung.fields.nama') }}
                 </th>
                 <th>
@@ -59,29 +56,26 @@
                         {{ $user->id ?? '' }}
                     </td>
                     <td>
-                        {{ $user->name ?? '' }}
+                        {{ $user->no_identitas ?? '' }}
                     </td>
                     <td>
-                        {{ $user->email ?? '' }}
+                        {{ $user->jenis_identitas ?? '' }}
                     </td>
                     <td>
-                        @foreach($user->roles as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                        @endforeach
+                        {{ $user->nama ?? '' }}
                     </td>
                     <td>
-                        {{ $user->id ?? '' }}
+                      @if($user->jenis_kelamin == 'L')
+                        Laki - laki
+                      @elseif($user->jenis_kelamin == 'P')
+                        Perempuan
+                      @endif
                     </td>
                     <td>
-                        {{ $user->name ?? '' }}
+                        {{ $user->no_telp ?? '' }}
                     </td>
                     <td>
-                        {{ $user->email ?? '' }}
-                    </td>
-                    <td>
-                        @foreach($user->roles as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                        @endforeach
+                      {{ $user->pekerjaan ?? '' }}
                     </td>
                     <td>
                         @can('alat_edit')

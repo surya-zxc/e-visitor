@@ -6,11 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Visitor extends Model
 {
     use SoftDeletes;
 
-    public $table = 'areas';
+    public $table = 'visitors';
 
     protected $hidden = [
     ];
@@ -22,11 +22,8 @@ class Area extends Model
     ];
 
     protected $fillable = [
-        'nama',
+        'no_identitas','jenis_identitas','jenis_identitas_lainnya','nama','tempat_lahir','tanggal_lahir',
+        'jenis_kelamin','golongan_darah','alamat','no_telp','agama','marital_status','pekerjaan','kewarganegaraan'
     ];
-
-    public function Device(){
-      return $this->hasOne('App\Device','area_id','id');
-    }
 
 }
