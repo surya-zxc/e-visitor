@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 @section('content')
 <h6 class="c-grey-900">
-  {{ trans('global.list') }} Area
+    {{ trans('cruds.akses_area.title_singular') }}
 </h6>
 <div class="mT-30">
-    @can('user_create')
+    @can('alat_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route("admin.area.create") }}">
-                    Tambah Area
+                <a class="btn btn-success" href="{{ route("admin.areaAkses.create") }}">
+                    {{ trans('global.add') }} {{ trans('cruds.akses_area.title_singular') }}
                 </a>
             </div>
         </div>
@@ -21,35 +21,53 @@
 
                 </th>
                 <th>
-                    Nama
+                    {{ trans('cruds.akses_area.fields.id') }}
                 </th>
                 <th>
+                    {{ trans('cruds.akses_area.fields.visitation_id') }}
+                </th>
+                <th>
+                    {{ trans('cruds.akses_area.fields.area_id') }}
+                </th>
+                <th>
+                    {{ trans('global.actions') }}
                 </th>
             </tr>
             </thead>
             <tbody>
-            @foreach($areas as $key => $area)
-                <tr data-entry-id="{{ $area->id }}">
+            @foreach($users as $key => $user)
+                <tr data-entry-id="{{ $user->id }}">
                     <td>
 
                     </td>
                     <td>
-                        {{ $area->nama ?? '' }}
+                        {{ $user->id ?? '' }}
                     </td>
                     <td>
-                        @can('area_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.area.edit', $area->id) }}">
+                        {{ $user->name ?? '' }}
+                    </td>
+                    <td>
+                        @foreach($user->roles as $key => $item)
+                            <span class="badge badge-info">{{ $item->title }}</span>
+                        @endforeach
+                    </td>
+                    <td>
+                        @can('alat_edit')
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.areaAkses.edit', $user->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                         @endcan
-                        @can('area_delete')
-                            <form action="{{ route('admin.area.destroy', $area->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+
+                        @can('alat_delete')
+                            <form action="{{ route('admin.areaAkses.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                             </form>
                         @endcan
+
                     </td>
+
                 </tr>
             @endforeach
             </tbody>
