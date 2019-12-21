@@ -4,6 +4,13 @@
     {{ trans('global.edit') }} {{ trans('cruds.kunjungan.title_singular') }}
 </h6>
 <div class="mT-30">
+        <div id="smartwizard" class="sw-main sw-theme-arrows">
+          <ul class="nav nav-tabs step-anchor">
+            <li class="nav-item active"><a href="{{ route("admin.kunjungan.create") }}" class="nav-link">Step 1<br><small>Data Pengunjung</small></a></li>
+            <li class="nav-item"><a href="{{ route("admin.kunjungan.area",1) }}" class="nav-link">Step 2<br><small>Akses Area</small></a></li>
+          </ul>
+        </div>
+        <hr class="mT-10"/>
         @csrf
         @method('PUT')
         <div class="form-group {{ $errors->has('visitor') ? 'has-error' : '' }}">

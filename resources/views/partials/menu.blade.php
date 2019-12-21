@@ -48,19 +48,19 @@
               </a>
               <ul class="dropdown-menu">
                   <li>
-                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.kunjungan.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                       <i class="fa-fw fas fa-plus nav-icon"> </i>
-                      Tambah Kunjungan
+                      Kunjungan
                     </a>
                   </li>
                   <li>
-                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.tracking.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                       <i class="fa-fw fas fa-route nav-icon"> </i>
                       Track Pengunjung
                     </a>
                   </li>
                   <li>
-                    <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.history.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                       <i class="fa-fw fas fa-history nav-icon"> </i>
                       Riwayat Kunjungan
                     </a>

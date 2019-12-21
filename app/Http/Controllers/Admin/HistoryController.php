@@ -12,7 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class KunjunganController extends Controller
+class HistoryController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class KunjunganController extends Controller
 
         $users = User::all();
 
-        return view('admin.kunjungan.index', compact('users'));
+        return view('admin.history.index', compact('users'));
     }
 
     public function create()

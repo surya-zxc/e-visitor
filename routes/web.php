@@ -41,4 +41,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Kartu Pengunjung
     Route::delete('kartu/destroy', 'KartuController@massDestroy')->name('kartu.massDestroy');
     Route::resource('kartu', 'KartuController');
+
+    // MODUL KUNJUNGAN
+    Route::get('kunjungan/{id}/area', 'KunjunganController@area')->name('kunjungan.area');
+    Route::resource('kunjungan', 'KunjunganController');
+
+    // TRACK PENGUNJUNG
+    Route::get('tracking/', 'TrackingController@index')->name('tracking.index');
+
+    // RIWAYAT PENGUNJUNG
+    Route::get('history/', 'HistoryController@index')->name('history.index');
+
+
 });
