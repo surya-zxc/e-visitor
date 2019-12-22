@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 @section('content')
 <h6 class="c-grey-900">
-    {{ trans('global.add') }} {{ trans('cruds.kunjungan.title_singular') }}
+    {{ trans('global.edit') }} {{ trans('cruds.kunjungan.title_singular') }}
 </h6>
 <div class="mT-30">
-    <div id="smartwizard" class="sw-main sw-theme-arrows">
-      <ul class="nav nav-tabs step-anchor">
-        <li class="nav-item"><a href="{{ route("admin.kunjungan.create") }}" class="nav-link">Step 1<br><small>Data Pengunjung</small></a></li>
-        <li class="nav-item active"><a href="{{ route("admin.kunjungan.area",1) }}" class="nav-link">Step 2<br><small>Akses Area</small></a></li>
-      </ul>
-    </div>
-    <hr class="mT-10"/>
-    <form action="{{ route("admin.kunjungan.store") }}" method="POST" enctype="multipart/form-data">
+        <div id="smartwizard" class="sw-main sw-theme-arrows">
+          <ul class="nav nav-tabs step-anchor">
+            <li class="nav-item"><a href="{{ route("admin.kunjungan.edit", 1) }}" class="nav-link">Step 1<br><small>Data Pengunjung</small></a></li>
+            <li class="nav-item active"><a href="{{ route("admin.kunjungan.editArea",1) }}" class="nav-link">Step 2<br><small>Akses Area</small></a></li>
+          </ul>
+        </div>
+        <hr class="mT-10"/>
         @csrf
+        @method('PUT')
         <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
             <label for="area">{{ trans('cruds.area.fields.nama') }}*</label>
             <select name="area[]" id="area" class="form-control select2" multiple="multiple" required>
@@ -39,6 +39,5 @@
             </a>
             <input class="btn btn-success" type="submit" value="{{ trans('global.save') }}">
         </div>
-    </form>
 </div>
 @endsection

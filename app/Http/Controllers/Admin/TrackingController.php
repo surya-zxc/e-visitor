@@ -23,66 +23,12 @@ class TrackingController extends Controller
         return view('admin.tracking.index', compact('users'));
     }
 
-    public function create()
+    public function show(User $user)
     {
-        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        return view('admin.kunjungan.create', compact('roles'));
-    }
-
-    public function store(StoreUserRequest $request)
-    {
-        $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
-        return redirect()->route('admin.kunjungan.index');
-
-    }
-
-    public function area($id)
-    {
-      abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-      $roles = Role::all()->pluck('title', 'id');
-
-      return view('admin.kunjungan.area', compact('roles'));
-    }
-
-    public function edit(User $user)
-    {
-        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
+        abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user->load('roles');
 
-        return view('admin.kunjungan.edit', compact('roles', 'user'));
-    }
-
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
-        return redirect()->route('admin.kunjungan.index');
-
-    }
-
-    public function destroy(User $user)
-    {
-        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $user->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyUserRequest $request)
-    {
-        User::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
+        return view('admin.tracking.show', compact('user'));
     }
 }

@@ -70,6 +70,15 @@ class KunjunganController extends Controller
 
     }
 
+    public function editArea($id)
+    {
+      abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+      $roles = Role::all()->pluck('title', 'id');
+
+      return view('admin.kunjungan.editArea', compact('roles'));
+    }
+
     public function destroy(User $user)
     {
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');

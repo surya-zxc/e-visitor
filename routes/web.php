@@ -46,11 +46,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('kunjungan/{id}/area', 'KunjunganController@area')->name('kunjungan.area');
     Route::resource('kunjungan', 'KunjunganController');
 
+    Route::get('kunjungan/{id}/editArea', 'KunjunganController@editArea')->name('kunjungan.editArea');
+    Route::resource('kunjungan', 'KunjunganController');
+
     // TRACK PENGUNJUNG
-    Route::get('tracking/', 'TrackingController@index')->name('tracking.index');
+    // Route::get('tracking/', 'TrackingController@index')->name('tracking.index');
+    // Permissions
+    Route::delete('tracking/destroy', 'TrackingController@massDestroy')->name('tracking.massDestroy');
+    Route::resource('tracking', 'TrackingController');
 
     // RIWAYAT PENGUNJUNG
-    Route::get('history/', 'HistoryController@index')->name('history.index');
-
-
+    // Route::get('history/', 'HistoryController@index')->name('history.index');
+    Route::delete('history/destroy', 'HistoryController@massDestroy')->name('history.massDestroy');
+    Route::resource('history', 'HistoryController');
 });

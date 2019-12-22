@@ -48,7 +48,7 @@
               </a>
               <ul class="dropdown-menu">
                   <li>
-                    <a href="{{ route("admin.kunjungan.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.kunjungan.create") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                       <i class="fa-fw fas fa-plus nav-icon"> </i>
                       Kunjungan
                     </a>
