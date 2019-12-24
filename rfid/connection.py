@@ -18,12 +18,12 @@ class connection(object):
         self.cur.execute("SELECT "+field+" FROM "+table)
         return cur.fetchall()
 
-    def getVisitorCart(self,cardUID):
+    def getVisitorCard(self,cardUID):
         self.cur.execute("SELECT * FROM visitor_cards WHERE card_uid='"+cardUID+"'")
         return self.cur.fetchone()
 
     def insertVisitorCard(self,cardUID):
-        cek = self.getVisitorCart(cardUID)
+        cek = self.getVisitorCard(cardUID)
         if cek is not None:
             return cek
         if cardUID is None:

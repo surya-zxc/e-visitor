@@ -17,6 +17,7 @@ GET_FIRMWARE = [0xFF,0x00,0x48,0x00,0x00]
 r = readers()
 print "Available readers:", r
 
+
 def stringParser(dataCurr):
 #--------------String Parser--------------#
     #([85, 203, 230, 191], 144, 0) -> [85, 203, 230, 191]
@@ -113,10 +114,25 @@ def writeTag(page, value):
             break
 
 if __name__ == "__main__":
-    areaId = "1"
-    print "Area ID : "+areaId
-    c = connection()
-    while True:
-        data = getData()
-        if data is not None:
-            print(c.insertVisitationActivityLogs(areaId,str(data)))
+    parser = argparse.ArgumentParser(description='NFC reader for E-Visitor')
+    parser.add_argument("--m",required=True, help="Mode :\n[1 : Visitor Logs *Required Area ID]\n[2 : Insert Card to DB]")
+    parser.add_argument("--a",default='1', help="Area ID [default=1]")
+
+    args = parser.parse_args()
+    if args.m == '1':
+        print "Visitor Logs"
+        areaId = args.a
+        print "Area ID : "+areaId
+        c = connection()
+        while True:
+            data = getData()
+            if data is not None:
+                print(c.insertVisitationActivityLogs(areaId,str(data)))
+    elif args.m == '2':
+        print "Mode Inserd Card to DB"
+        while True:
+            data = getData()
+            if data is not None:
+                print(c.insertVisitorCard(str(data)))
+    else:
+        print "invalid option"
