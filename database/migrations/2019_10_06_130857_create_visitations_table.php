@@ -16,7 +16,7 @@ class CreateVisitationsTable extends Migration
         Schema::create('visitations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('visitor_id');
-            $table->unsignedInteger('user_id')->comment('Petugas yang bertanggung jawab / menghandle pengunjung');
+            $table->unsignedInteger('user_id')->nullable()->comment('Petugas yang bertanggung jawab / menghandle pengunjung');
             $table->unsignedBigInteger('card_id');
             $table->date('tanggal');
             $table->text('keperluan')->nullable();

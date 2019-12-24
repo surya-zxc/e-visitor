@@ -20,7 +20,7 @@
         </div>
         <div class="form-group {{ $errors->has('jenis_identitas') ? 'has-error' : '' }}">
             <label for="jenis_identitas">{{ trans('cruds.pengunjung.fields.jenis_identitas') }}*</label>
-            <select name="jenis_identitas" id="jenis_identitas" class="form-control select1" required>
+            <select name="jenis_identitas" id="jenis_identitas" class="form-control select2" required>
               <option value="KTP">KTP</option>
               <option value="SIM">SIM</option>
               <option value="Passport">Passport</option>
@@ -82,7 +82,7 @@
         </div>
         <div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : '' }}">
             <label for="jenis_kelamin">{{ trans('cruds.pengunjung.fields.jenis_kelamin') }}*</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select1" required>
+            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2" required>
                 <option value="L">Laki - Laki</option>
                 <option value="P">Perempuan</option>
             </select>
@@ -97,7 +97,7 @@
         </div>
         <div class="form-group {{ $errors->has('golongan_darah') ? 'has-error' : '' }}">
             <label for="golongan_darah">{{ trans('cruds.pengunjung.fields.golongan_darah') }}*</label>
-            <select name="golongan_darah" id="golongan_darah" class="form-control select1" required>
+            <select name="golongan_darah" id="golongan_darah" class="form-control select2" required>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="AB">AB</option>
@@ -135,7 +135,7 @@
         </div>
         <div class="form-group {{ $errors->has('agama') ? 'has-error' : '' }}">
             <label for="agama">{{ trans('cruds.pengunjung.fields.agama') }}*</label>
-            <select name="agama" id="agama" class="form-control select1" required>
+            <select name="agama" id="agama" class="form-control select2" required>
                 <option value="Islam">Islam</option>
                 <option value="Kristen">Kristen</option>
                 <option value="Katolik">Katolik</option>
@@ -155,7 +155,7 @@
         </div>
         <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : '' }}">
             <label for="marital_status">{{ trans('cruds.pengunjung.fields.marital_status') }}*</label>
-            <select name="marital_status" id="marital_status" class="form-control select1" required>
+            <select name="marital_status" id="marital_status" class="form-control select2" required>
                 <option value="Menikah">Menikah</option>
                 <option value="Belum Menikah">Belum Menikah</option>
             </select>
@@ -182,7 +182,7 @@
         </div>
         <div class="form-group {{ $errors->has('kewarganegaraan') ? 'has-error' : '' }}">
             <label for="kewarganegaraan">{{ trans('cruds.pengunjung.fields.kewarganegaraan') }}*</label>
-            <select name="kewarganegaraan" id="kewarganegaraan" class="form-control select1" required>
+            <select name="kewarganegaraan" id="kewarganegaraan" class="form-control select2" required>
                 <option value="WNI">WNI</option>
                 <option value="Non WNI">Non WNI</option>
             </select>

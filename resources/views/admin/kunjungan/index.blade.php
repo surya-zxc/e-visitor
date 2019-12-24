@@ -24,13 +24,10 @@
                     {{ trans('cruds.kunjungan.fields.id') }}
                 </th>
                 <th>
-                    {{ trans('cruds.kunjungan.fields.visitor_id') }}
+                    Nama Pengunjung
                 </th>
                 <th>
-                    {{ trans('cruds.kunjungan.fields.user_id') }}
-                </th>
-                <th>
-                    {{ trans('cruds.kunjungan.fields.card_id') }}
+                    Kartu
                 </th>
                 <th>
                     {{ trans('cruds.kunjungan.fields.tanggal') }}
@@ -42,56 +39,43 @@
                     {{ trans('cruds.kunjungan.fields.jaminan') }}
                 </th>
                 <th>
-                    {{ trans('cruds.kunjungan.fields.jaminan_lainnya') }}
-                </th>
-                <th>
                     {{ trans('global.actions') }}
                 </th>
             </tr>
             </thead>
             <tbody>
-            @foreach($users as $key => $user)
-                <tr data-entry-id="{{ $user->id }}">
+            @foreach($visitations as $key => $visitation)
+                <tr data-entry-id="{{ $visitation->id }}">
                     <td>
 
                     </td>
                     <td>
-                        {{ $user->id ?? '' }}
+                        {{ $visitation->id ?? '' }}
                     </td>
                     <td>
-                        {{ $user->name ?? '' }}
+                        {{ $visitation->visitor->nama }}
                     </td>
                     <td>
-                        {{ $user->email ?? '' }}
+                        {{ $visitation->card->card_uid }}
                     </td>
                     <td>
-                        @foreach($user->roles as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                        @endforeach
+                        {{ $visitation->tanggal->toDateString() }}
                     </td>
                     <td>
-                        {{ $user->id ?? '' }}
+                        {{ $visitation->keperluan }}
                     </td>
                     <td>
-                        {{ $user->name ?? '' }}
-                    </td>
-                    <td>
-                        {{ $user->email ?? '' }}
-                    </td>
-                    <td>
-                        @foreach($user->roles as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                        @endforeach
+                        {{ $visitation->jaminan }}
                     </td>
                     <td>
                         @can('alat_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.kunjungan.edit', $user->id) }}">
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.kunjungan.edit', $visitation->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                         @endcan
 
                         @can('alat_delete')
-                            <form action="{{ route('admin.kunjungan.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            <form action="{{ route('admin.kunjungan.destroy', $visitation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">

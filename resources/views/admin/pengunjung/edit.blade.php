@@ -21,7 +21,7 @@
         </div>
         <div class="form-group {{ $errors->has('jenis_identitas') ? 'has-error' : '' }}">
             <label for="jenis_identitas">{{ trans('cruds.pengunjung.fields.jenis_identitas') }}*</label>
-            <select name="jenis_identitas" id="jenis_identitas" class="form-control select1" required>
+            <select name="jenis_identitas" id="jenis_identitas" class="form-control select2" required>
               <option value="KTP" @if($user->jenis_identitas == 'KTP') selected @endif>KTP</option>
               <option value="SIM" @if($user->jenis_identitas == 'SIM') selected @endif>SIM</option>
               <option value="Passport" @if($user->jenis_identitas == 'Passport') selected @endif>Passport</option>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : '' }}">
             <label for="jenis_kelamin">{{ trans('cruds.pengunjung.fields.jenis_kelamin') }}*</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select1" required>
+            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2" required>
               <option value="L" @if($user->jenis_kelamin == 'L') selected @endif>Laki - Laki</option>
               <option value="P" @if($user->jenis_kelamin == 'P') selected @endif>Perempuan</option>
             </select>
@@ -101,7 +101,7 @@
         </div>
         <div class="form-group {{ $errors->has('golongan_darah') ? 'has-error' : '' }}">
             <label for="golongan_darah">{{ trans('cruds.pengunjung.fields.golongan_darah') }}*</label>
-            <select name="golongan_darah" id="golongan_darah" class="form-control select1" required>
+            <select name="golongan_darah" id="golongan_darah" class="form-control select2" required>
               <option value="A" @if($user->golongan_darah == 'A') selected @endif>A</option>
               <option value="B" @if($user->golongan_darah == 'B') selected @endif>B</option>
               <option value="AB" @if($user->golongan_darah == 'AB') selected @endif>AB</option>
@@ -142,7 +142,7 @@
         </div>
         <div class="form-group {{ $errors->has('agama') ? 'has-error' : '' }}">
             <label for="agama">{{ trans('cruds.pengunjung.fields.agama') }}*</label>
-            <select name="agama" id="agama" class="form-control select1" required>
+            <select name="agama" id="agama" class="form-control select2" required>
               <option value="Islam" @if($user->agama == 'Islam') selected @endif>Islam</option>
               <option value="Kristen" @if($user->agama == 'Kristen') selected @endif>Kristen</option>
               <option value="Katolik" @if($user->agama == 'Katolik') selected @endif>Katolik</option>
@@ -162,7 +162,7 @@
         </div>
         <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : '' }}">
             <label for="marital_status">{{ trans('cruds.pengunjung.fields.marital_status') }}*</label>
-            <select name="marital_status" id="marital_status" class="form-control select1" required>
+            <select name="marital_status" id="marital_status" class="form-control select2" required>
               <option value="Menikah"  @if($user->marital_status == 'Menikah') selected @endif>Menikah</option>
               <option value="Belum Menikah" @if($user->marital_status == 'Belum Menikah') selected @endif>Belum Menikah</option>
             </select>
@@ -189,7 +189,7 @@
         </div>
         <div class="form-group {{ $errors->has('kewarganegaraan') ? 'has-error' : '' }}">
             <label for="kewarganegaraan">{{ trans('cruds.pengunjung.fields.kewarganegaraan') }}*</label>
-            <select name="kewarganegaraan" id="kewarganegaraan" class="form-control select1" required>
+            <select name="kewarganegaraan" id="kewarganegaraan" class="form-control select2" required>
               <option value="WNI" @if($user->kewarganegaraan == 'WNI') selected @endif>WNI</option>
               <option value="Non WNI" @if($user->kewarganegaraan == 'Non WNI') selected @endif>Non WNI</option>
             </select>
