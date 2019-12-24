@@ -15,7 +15,7 @@
         @method('PUT')
         <div class="form-group {{ $errors->has('visitor') ? 'has-error' : '' }}">
             <label for="visitor">{{ trans('cruds.kunjungan.fields.visitor_id') }}*</label>
-            <select name="visitor[]" id="visitor" class="form-control select1" required>
+            <select name="visitor[]" id="visitor" class="form-control select2" required>
                 
             </select>
             @if($errors->has('visitor'))
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group {{ $errors->has('user') ? 'has-error' : '' }}">
             <label for="user">{{ trans('cruds.kunjungan.fields.user_id') }}*</label>
-            <select name="user[]" id="user" class="form-control select1" required>
+            <select name="user[]" id="user" class="form-control select2" required>
                 
             </select>
             @if($errors->has('user'))
@@ -43,7 +43,7 @@
         </div>
         <div class="form-group {{ $errors->has('card') ? 'has-error' : '' }}">
             <label for="card">{{ trans('cruds.kunjungan.fields.card_id') }}*</label>
-            <select name="card[]" id="card" class="form-control select1" required>
+            <select name="card[]" id="card" class="form-control select2" required>
                 
             </select>
             @if($errors->has('card'))
@@ -81,7 +81,7 @@
         </div>
         <div class="form-group {{ $errors->has('jaminan') ? 'has-error' : '' }}">
             <label for="jaminan">{{ trans('cruds.kunjungan.fields.jaminan') }}*</label>
-            <select name="jaminan[]" id="jaminan" class="form-control select1" required>
+            <select name="jaminan[]" id="jaminan" class="form-control select2" required>
                 
             </select>
             @if($errors->has('jaminan'))

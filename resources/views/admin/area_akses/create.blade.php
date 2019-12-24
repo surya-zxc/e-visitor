@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group {{ $errors->has('visit') ? 'has-error' : '' }}">
             <label for="visit">{{ trans('cruds.akses_area.fields.visitation_id') }}*</label>
-            <select name="visit[]" id="visit" class="form-control select1" required>
+            <select name="visit[]" id="visit" class="form-control select2" required>
                 
             </select>
             @if($errors->has('visit'))
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
             <label for="area">{{ trans('cruds.akses_area.fields.area_id') }}*</label>
-            <select name="area[]" id="area" class="form-control select1" required>
+            <select name="area[]" id="area" class="form-control select2" required>
                 
             </select>
             @if($errors->has('area'))

@@ -8,6 +8,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Role;
 use App\User;
+use App\Visitor;
+use App\Visitation;
+use App\Card;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,28 +20,22 @@ class KunjunganController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::all();
-
-        return view('admin.kunjungan.index', compact('users'));
+        $visitations = Visitation::orderBy('updated_at','desc')->with('visitor','card')->get();
+        return view('admin.kunjungan.index', compact('visitations'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        return view('admin.kunjungan.create', compact('roles'));
+        $visitors = Visitor::select('nama','id','no_identitas','jenis_identitas')->orderBy('no_identitas', 'asc')->get();
+        $cards = Card::all();
+        return view('admin.kunjungan.create', compact('visitors','cards'));
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
+        Visitation::create($request->all());
         return redirect()->route('admin.kunjungan.index');
-
     }
 
     public function area($id)
