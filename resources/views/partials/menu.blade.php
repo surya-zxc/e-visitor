@@ -49,16 +49,16 @@
               <ul class="dropdown-menu">
                   <li>
                     <a href="{{ route("admin.kunjungan.create") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="fa-fw fas fa-plus nav-icon"> </i>
+                      <i class="fa-fw fas fa-route nav-icon"> </i>
                       Kunjungan
                     </a>
                   </li>
-                  <li>
-                    <a href="{{ route("admin.tracking.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="fa-fw fas fa-route nav-icon"> </i>
-                      Track Pengunjung
-                    </a>
-                  </li>
+                  {{--<li>--}}
+                    {{--<a href="{{ route("admin.tracking.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">--}}
+                      {{--<i class="fa-fw fas fa-route nav-icon"> </i>--}}
+                      {{--Track Pengunjung--}}
+                    {{--</a>--}}
+                  {{--</li>--}}
                   <li>
                     <a href="{{ route("admin.history.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                       <i class="fa-fw fas fa-history nav-icon"> </i>

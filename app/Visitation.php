@@ -37,4 +37,8 @@ class Visitation extends Model
       return $this->hasOne('App\Visitor','id','visitor_id');
     }
 
+    public function logs(){
+      return $this->hasMany('App\Visitation_log','id',null);
+    }
+
 }
