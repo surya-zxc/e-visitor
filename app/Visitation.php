@@ -41,4 +41,8 @@ class Visitation extends Model
       return $this->hasMany('App\Visitation_log','id',null);
     }
 
+    public function areas(){
+      return $this->hasMany('App\Visitation_area','id',null);
+    }
+
 }

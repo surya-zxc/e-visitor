@@ -11,13 +11,13 @@
       </ul>
     </div>
     <hr class="mT-10"/>
-    <form action="{{ route("admin.kunjungan.store") }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route("admin.kunjungan.storeArea",$id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
-            <label for="area">{{ trans('cruds.area.fields.nama') }}*</label>
+            <label for="area">Area yang boleh dimasuki oleh pengunjung</label>
             <select name="area[]" id="area" class="form-control select2" multiple="multiple" required>
-                @foreach($roles as $id => $roles)
-                    <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
+                @foreach($areas as $id => $area)
+                    <option value="{{ $area->id }}" {{ (in_array($area->id, old('areas', [])) || isset($selected_areas) && $selected_areas->contains($area->id)) ? 'selected' : '' }}>{{ $area->nama }}</option>
                 @endforeach
             </select>
             <label for="area" style="margin-top: 1%">

@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Kunjungan
     Route::delete('kunjungan/destroy', 'KunjunganController@massDestroy')->name('kunjungan.massDestroy');
+    Route::post('kunjungan/{id}/area', 'KunjunganController@storeArea')->name('kunjungan.storeArea');
     Route::resource('kunjungan', 'KunjunganController');
 
     // Alat
