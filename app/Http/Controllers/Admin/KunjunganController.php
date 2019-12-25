@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Area;
 use App\Role;
 use App\User;
 use App\Visitor;
 use App\Visitation;
+use App\Visitation_area;
 use App\Card;
 use Gate;
 use Illuminate\Http\Request;
@@ -34,17 +36,47 @@ class KunjunganController extends Controller
 
     public function store(Request $request)
     {
-        Visitation::create($request->all());
-        return redirect()->route('admin.kunjungan.index');
+        $visitation = Visitation::create($request->all());
+        return redirect()->route('admin.kunjungan.area',$visitation->id);
     }
 
     public function area($id)
     {
       abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+      $areas = Area::orderBy('nama','asc')->get();
+      $selected_areas = Visitation_area::where('visitation_id', $id)->pluck('area_id');
+      return view('admin.kunjungan.area', compact('id','areas','selected_areas'));
+    }
 
-      $roles = Role::all()->pluck('title', 'id');
-
-      return view('admin.kunjungan.area', compact('roles'));
+    public function storeArea($id, Request $request){
+      $selected_areas = Visitation_area::where('visitation_id', $id)->pluck('area_id')->toArray();
+      $posted_areas = $request->area;
+//      dd($posted_areas);
+      $toBeDeleted = $toBeInserted = array();
+      foreach($posted_areas as $posted_area){
+        if(!in_array($posted_area, $selected_areas)){
+          array_push($toBeInserted, $posted_area);
+        }
+      }
+      foreach($selected_areas as $selected_area){
+        if(!in_array($selected_area, $posted_areas)){
+          array_push($toBeDeleted, $selected_area);
+        }
+      }
+//      dd($toBeInserted);
+      foreach($toBeInserted as $insert){
+        $data = array(
+          'visitation_id' => $id,
+          'area_id' => $insert,
+        );
+//        dd($data);
+        Visitation_area::create($data);
+      }
+      foreach($toBeDeleted as $delete){
+        $data = Visitation_area::where('visitation_id', $id)->where('area_id', $delete)->first();
+        $data->delete();
+      }
+      return redirect()->route('admin.kunjungan.area',$id);
     }
 
     public function edit(User $user)
