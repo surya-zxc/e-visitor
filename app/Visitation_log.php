@@ -10,7 +10,7 @@ class Visitation_log extends Model
 {
     use SoftDeletes;
 
-    public $table = 'visitations_activity_logs';
+    public $table = 'visitation_activity_logs';
 
     protected $hidden = [
     ];
@@ -33,6 +33,10 @@ class Visitation_log extends Model
 
     public function device(){
       return $this->hasOne('App\Device','id','device_id');
+    }
+
+    public function lastTimeStamp(){
+      return $this->select('timestamp')->orderBy('timestamp','desc')->first();
     }
 
 }
