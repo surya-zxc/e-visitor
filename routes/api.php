@@ -9,7 +9,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Users
     Route::apiResource('users', 'UsersApiController');
-
+    
     //
     Route::get('dashboard/get_today_visitors_activity','DashboardApiController@getTodayVisitorLastActivity');
 });

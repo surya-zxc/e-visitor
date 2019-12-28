@@ -59,7 +59,7 @@
                 </ul> -->
             </div>
         </div>
-        <main class="main-content bgc-grey-100">
+        <main class="main-content bgc-grey-150">
             <div id="mainContent">
                 <div class="row gap-20 masonry pos-r">
                     <div style="padding-top: 20px" class="container-fluid">
@@ -116,6 +116,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/tableTrack.js') }}"></script>
     <script>
         $(function() {
   let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
