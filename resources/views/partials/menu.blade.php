@@ -36,37 +36,45 @@
                     <span class="title">{{ trans('global.dashboard') }}</span>
                 </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="#">
-                <span class="icon-holder">
-                    <i class="fa-fw fas fa-sign-in-alt nav-icon"></i>
-                </span>
+            <li class="nav-item">
+              <a href="{{ route("admin.kunjungan.index") }}" class="sidebar-link">
+                      <span class="icon-holder">
+                          <i class="nav-icon fas fa-fw fa-sign-in-alt"></i>
+                      </span>
                 <span class="title">Kunjungan</span>
-                <span class="arrow">
-                    <i class="ti-angle-right"></i>
-                </span>
               </a>
-              <ul class="dropdown-menu">
-                  <li>
-                    <a href="{{ route("admin.kunjungan.create") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="fa-fw fas fa-route nav-icon"> </i>
-                      Kunjungan
-                    </a>
-                  </li>
+            </li>
+            {{--<li class="nav-item dropdown">--}}
+              {{--<a class="dropdown-toggle" href="#">--}}
+                {{--<span class="icon-holder">--}}
+                    {{--<i class="fa-fw fas fa-sign-in-alt nav-icon"></i>--}}
+                {{--</span>--}}
+                {{--<span class="title">Kunjungan</span>--}}
+                {{--<span class="arrow">--}}
+                    {{--<i class="ti-angle-right"></i>--}}
+                {{--</span>--}}
+              {{--</a>--}}
+              {{--<ul class="dropdown-menu">--}}
+                  {{--<li>--}}
+                    {{--<a href="{{ route("admin.kunjungan.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">--}}
+                      {{--<i class="fa-fw fas fa-route nav-icon"> </i>--}}
+                      {{--Kunjungan--}}
+                    {{--</a>--}}
+                  {{--</li>--}}
                   {{--<li>--}}
                     {{--<a href="{{ route("admin.tracking.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">--}}
                       {{--<i class="fa-fw fas fa-route nav-icon"> </i>--}}
                       {{--Track Pengunjung--}}
                     {{--</a>--}}
                   {{--</li>--}}
-                  <li>
-                    <a href="{{ route("admin.history.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="fa-fw fas fa-history nav-icon"> </i>
-                      Riwayat Kunjungan
-                    </a>
-                  </li>
-              </ul>
-            </li>
+                  {{--<li>--}}
+                    {{--<a href="{{ route("admin.history.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">--}}
+                      {{--<i class="fa-fw fas fa-history nav-icon"> </i>--}}
+                      {{--Riwayat Kunjungan--}}
+                    {{--</a>--}}
+                  {{--</li>--}}
+              {{--</ul>--}}
+            {{--</li>--}}
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="#">
                   <span class="icon-holder">

@@ -8,7 +8,7 @@ class connection(object):
             host="localhost",
             user="root",
             passwd="",
-            database="visitor"
+            database="e_visitor"
         )
         self.cur = self.db.cursor()
 

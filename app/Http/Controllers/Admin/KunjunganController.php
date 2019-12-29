@@ -22,7 +22,7 @@ class KunjunganController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $visitations = Visitation::orderBy('updated_at','desc')->with('visitor','card')->get();
+        $visitations = Visitation::orderBy('updated_at','desc')->orderBy('status','asc')->with('visitor','card')->get();
         return view('admin.kunjungan.index', compact('visitations'));
     }
 
@@ -30,7 +30,9 @@ class KunjunganController extends Controller
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $visitors = Visitor::select('nama','id','no_identitas','jenis_identitas')->orderBy('no_identitas', 'asc')->get();
-        $cards = Card::all();
+        $cards = Card::whereDoesntHave('kunjungan', function($q){
+          $q->whereDate('tanggal', date('Y-m-d'))->where('status', 'aktif');
+        })->get();
         return view('admin.kunjungan.create', compact('visitors','cards'));
     }
 
@@ -79,41 +81,37 @@ class KunjunganController extends Controller
       return redirect()->route('admin.kunjungan.area',$id);
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $roles = Role::all()->pluck('title', 'id');
-
-        $user->load('roles');
-
-        return view('admin.kunjungan.edit', compact('roles', 'user'));
+        $visitation = Visitation::findOrFail($id);
+        $visitors = Visitor::select('nama','id','no_identitas','jenis_identitas')->orderBy('no_identitas', 'asc')->get();
+//        dd($visitation->tanggal->toDateString());
+        $cards = Card::whereDoesntHave('kunjungan', function($q) use ($id){
+          $q->whereDate('tanggal', date('Y-m-d'))->where('status', 'aktif')->where('id', '!=',$id);
+        })->get();
+      return view('admin.kunjungan.edit', compact('visitation','visitors','cards'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
-
-        return redirect()->route('admin.kunjungan.index');
-
+        $visitation = Visitation::findOrFail($id);
+        $visitation->update($request->all());
+        return redirect()->route('admin.kunjungan.edit', $id);
     }
 
     public function editArea($id)
     {
       abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
       $roles = Role::all()->pluck('title', 'id');
-
       return view('admin.kunjungan.editArea', compact('roles'));
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $user->delete();
-
+        $visitation = Visitation::findOrFail($id);
+        $visitation->delete();
         return back();
     }
 

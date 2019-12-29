@@ -39,6 +39,9 @@
                     {{ trans('cruds.kunjungan.fields.jaminan') }}
                 </th>
                 <th>
+                    Status
+                </th>
+                <th>
                     {{ trans('global.actions') }}
                 </th>
             </tr>
@@ -66,6 +69,9 @@
                     </td>
                     <td>
                         {{ $visitation->jaminan }}
+                    </td>
+                    <td>
+                        {{ ucfirst($visitation->status) }}
                     </td>
                     <td>
                         @can('alat_edit')
