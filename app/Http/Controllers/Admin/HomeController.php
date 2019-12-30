@@ -32,6 +32,7 @@ class HomeController
         $i=0;
         foreach($data as $usr){
             $users[$i]=DB::table('visitation_activity_logs')
+            ->select('visitors.nama','areas.nama as nama_area','visitation_activity_logs.timestamp as timestamp')
             ->leftJoin('visitations','visitation_activity_logs.visitation_id','=','visitations.id')
             ->leftJoin('visitors','visitations.visitor_id','=','visitors.id')
             ->leftJoin('areas','visitation_activity_logs.area_id','=','areas.id')

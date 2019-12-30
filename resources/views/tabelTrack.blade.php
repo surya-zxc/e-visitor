@@ -6,7 +6,7 @@
 
             </th>
             <th>
-                {{ trans('cruds.tracking.fields.id') }}
+                No
             </th>
             <th>
                 {{ trans('cruds.pengunjung.fields.nama') }}
@@ -20,12 +20,13 @@
         </tr>
     </thead>
     <tbody>
+    <?php $no=1 ?>
         @foreach($users as $user)
         <tr>
             <td>
             </td>
             <td>
-             <?php echo $user->id ?>
+            <?php echo $no; $no++?>
             </td>
             <td>
             <?php echo $user->nama ?>          
