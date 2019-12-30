@@ -26,7 +26,7 @@ class Visitation extends Model
         'visitor_id','user_id',
         'card_id','tanggal',
         'keperluan','jaminan',
-        'jaminan_lainnya'
+        'jaminan_lainnya','status'
     ];
 
     public function card(){

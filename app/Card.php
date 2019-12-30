@@ -25,4 +25,8 @@ class Card extends Model
         'card_uid',
     ];
 
+    public function kunjungan(){
+      return $this->hasMany('App\Visitation','card_id','id');
+    }
+
 }

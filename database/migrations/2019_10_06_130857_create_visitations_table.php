@@ -21,6 +21,7 @@ class CreateVisitationsTable extends Migration
             $table->date('tanggal');
             $table->text('keperluan')->nullable();
             $table->enum('jaminan',['KTP','SIM','Passport','Lainnya'])->nullable();
+            $table->enum('status',['aktif','selesai'])->default('aktif')->nullable();
             $table->string('jaminan_lainnya',50)->nullable();
             $table->timestamps();
             $table->softDeletes();
