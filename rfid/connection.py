@@ -44,7 +44,7 @@ class connection(object):
         return cur.fetchall()
 
     def isAllowedArea(self,areaId,cardId):
-        self.cur.execute("SELECT `visitations`.`id`,`devices`.`id` FROM `visitation_allowed_areas` LEFT JOIN (visitations,visitor_cards,devices) on visitation_allowed_areas.visitation_id = visitations.id AND visitations.card_id = visitor_cards.id WHERE visitor_cards.card_uid = '"+cardId+"' AND visitation_allowed_areas.area_id = '"+areaId+"'")
+        self.cur.execute("SELECT `visitations`.`id`,`devices`.`id` FROM `visitation_allowed_areas` LEFT JOIN (visitations,visitor_cards,devices) on visitation_allowed_areas.visitation_id = visitations.id AND visitations.card_id = visitor_cards.id WHERE year(visitations.tanggal) = year(now()) AND month(visitations.tanggal) = month(now()) AND day(visitations.tanggal) = day(now()) AND visitor_cards.card_uid = '"+cardId+"' AND visitation_allowed_areas.area_id = '"+areaId+"'")
         data = self.cur.fetchone()
         if data != None:
             return data

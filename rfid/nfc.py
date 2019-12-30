@@ -119,11 +119,12 @@ if __name__ == "__main__":
     parser.add_argument("--a",default='1', help="Area ID [default=1]")
 
     args = parser.parse_args()
+    c = connection()
     if args.m == '1':
         print "Visitor Logs"
         areaId = args.a
         print "Area ID : "+areaId
-        c = connection()
+        
         while True:
             data = getData()
             if data is not None:
