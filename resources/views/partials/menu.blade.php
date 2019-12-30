@@ -43,6 +43,29 @@
                       </span>
                 <span class="title">Kunjungan</span>
               </a>
+<<<<<<< HEAD
+              <ul class="dropdown-menu">
+                  <li>
+                    <a href="{{ route("admin.kunjungan.create") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                      <i class="fa-fw fas fa-route nav-icon"> </i>
+                      Kunjungan
+                    </a>
+                  </li>
+                  {{--<li>--}}
+                    {{--<a href="{{ route("admin.tracking.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">--}}
+                      {{--<i class="fa-fw fas fa-route nav-icon"> </i>--}}
+                      {{--Track Pengunjung--}}
+                    {{--</a>--}}
+                  {{--</li>--}}
+                  <li>
+                    <a href="{{ route("admin.history.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                      <i class="fa-fw fas fa-history nav-icon"> </i>
+                      Riwayat Kunjungan
+                    </a>
+                  </li>
+              </ul>
+=======
+>>>>>>> a3473edd136e9debd2fb730c404945fffcb115b0
             </li>
             {{--<li class="nav-item dropdown">--}}
               {{--<a class="dropdown-toggle" href="#">--}}
