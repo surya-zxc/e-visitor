@@ -31,12 +31,18 @@ class HomeController
         $data = DB::table('visitation_activity_logs')->groupBy('visitation_id')->get();
         $i=0;
         foreach($data as $usr){
-            $users[$i]=DB::table('visitation_activity_logs')
+            $tes=DB::table('visitation_activity_logs')
+            ->select('visitors.nama','areas.nama as nama_area','visitation_activity_logs.timestamp as timestamp')
             ->leftJoin('visitations','visitation_activity_logs.visitation_id','=','visitations.id')
             ->leftJoin('visitors','visitations.visitor_id','=','visitors.id')
             ->leftJoin('areas','visitation_activity_logs.area_id','=','areas.id')
-            ->where('visitation_id',$usr->visitation_id)->orderBy('timestamp','desc')->get()->first();
-            $i++;
+            ->whereDate('timestamp',date('Y-m-d'))
+            ->where('visitation_id',$usr->visitation_id)
+            ->orderBy('timestamp','desc')->get()->first();
+            if($tes!=null){
+                $users[$i]=$tes;
+                $i++;
+            }
         }
         return view('tabelTrack', compact('users'));
     }
